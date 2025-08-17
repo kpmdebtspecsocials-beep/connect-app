@@ -29,52 +29,53 @@ export const Issues: React.FC = () => {
   const statuses: Status[] = ["Reported", "In Progress", "Resolved"];
 
   return (
-    <div className="min-h-screen bg-background pb-20 md:pb-0">
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
       <div className="max-w-content mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Community Issues</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl font-bold text-foreground mb-2">Community Issues</h1>
+          <p className="text-gray-700">
             Track the progress of reported issues in your community
           </p>
         </div>
 
         {/* Search and Filters */}
-        <Card className="shadow-card">
+        <Card className="bg-white border border-border shadow-md">
           <CardContent className="p-4 space-y-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 placeholder="Search issues by title, description, or location..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 border-border"
               />
             </div>
             
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm font-medium">Filters:</span>
+                <Filter className="h-4 w-4 text-gray-400" />
+                <span className="text-sm font-medium text-foreground">Filters:</span>
               </div>
               
               {/* Category Filter */}
               <div className="space-y-2">
-                <span className="text-sm text-muted-foreground">Category:</span>
+                <span className="text-sm text-gray-500">Category:</span>
                 <div className="flex flex-wrap gap-2">
                   <Button
-                    variant={selectedCategory === "all" ? "civic" : "outline"}
+                    variant={selectedCategory === "all" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setSelectedCategory("all")}
+                    className={selectedCategory === "all" ? "bg-primary hover:bg-primary-hover text-white" : ""}
                   >
                     All Categories
                   </Button>
                   {categories.map(category => (
                     <Button
                       key={category}
-                      variant={selectedCategory === category ? "civic" : "outline"}
+                      variant={selectedCategory === category ? "default" : "outline"}
                       size="sm"
                       onClick={() => setSelectedCategory(category)}
-                      className="flex items-center gap-1"
+                      className={`flex items-center gap-1 ${selectedCategory === category ? "bg-primary hover:bg-primary-hover text-white" : ""}`}
                     >
                       <span>{categoryIcons[category]}</span>
                       {category}
@@ -85,21 +86,23 @@ export const Issues: React.FC = () => {
               
               {/* Status Filter */}
               <div className="space-y-2">
-                <span className="text-sm text-muted-foreground">Status:</span>
+                <span className="text-sm text-gray-500">Status:</span>
                 <div className="flex flex-wrap gap-2">
                   <Button
-                    variant={selectedStatus === "all" ? "civic" : "outline"}
+                    variant={selectedStatus === "all" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setSelectedStatus("all")}
+                    className={selectedStatus === "all" ? "bg-primary hover:bg-primary-hover text-white" : ""}
                   >
                     All Status
                   </Button>
                   {statuses.map(status => (
                     <Button
                       key={status}
-                      variant={selectedStatus === status ? "civic" : "outline"}
+                      variant={selectedStatus === status ? "default" : "outline"}
                       size="sm"
                       onClick={() => setSelectedStatus(status)}
+                      className={selectedStatus === status ? "bg-primary hover:bg-primary-hover text-white" : ""}
                     >
                       {status}
                     </Button>
@@ -113,7 +116,7 @@ export const Issues: React.FC = () => {
         {/* Results Summary */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm text-gray-500">
               Showing {filteredIssues.length} of {issues.length} issues
             </span>
             {(selectedCategory !== "all" || selectedStatus !== "all" || searchTerm) && (
@@ -152,15 +155,15 @@ export const Issues: React.FC = () => {
             ))}
           </div>
         ) : (
-          <Card className="shadow-card">
+          <Card className="bg-white border border-border shadow-md">
             <CardContent className="flex flex-col items-center justify-center p-8 text-center">
-              <Search className="h-12 w-12 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-medium mb-2">No issues found</h3>
-              <p className="text-muted-foreground mb-4">
+              <Search className="h-12 w-12 text-gray-400 mb-4" />
+              <h3 className="text-lg font-bold text-foreground mb-2">No issues found</h3>
+              <p className="text-gray-700 mb-4">
                 Try adjusting your search terms or filters
               </p>
               <Button
-                variant="civic"
+                className="bg-primary hover:bg-primary-hover text-white"
                 onClick={() => {
                   setSelectedCategory("all");
                   setSelectedStatus("all");

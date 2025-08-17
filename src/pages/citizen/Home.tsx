@@ -22,83 +22,84 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20 md:pb-0 overflow-hidden">
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
       <div className="max-w-content mx-auto px-4 py-4 md:py-6">
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-primary via-accent to-primary/80 shadow-2xl mb-4 md:mb-8">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative px-4 md:px-8 py-8 md:py-16 text-center text-white">
-            <div className="mx-auto max-w-2xl">
-              <h1 className="text-2xl md:text-5xl font-bold mb-2 md:mb-4 bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
+        <div className="bg-white rounded-lg shadow-md border border-border mb-6">
+          <div className="px-6 py-8 text-center">
+            <div className="mx-auto max-w-xl">
+              <h1 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
                 Welcome to Setshaba Connect
               </h1>
-              <p className="text-sm md:text-xl mb-4 md:mb-8 text-white/90 leading-relaxed">
-                Your voice matters. Report issues, track progress, and help build a better community together.
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                Report community issues and track their resolution progress.
               </p>
-              <div className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center">
-                <Button asChild size="sm" className="bg-white text-primary hover:bg-white/90 shadow-lg transform hover:scale-105 transition-all duration-200 md:size-lg">
+              <div className="flex justify-center">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary-hover text-white px-8">
                   <Link to="/report" className="flex items-center gap-2">
                     <AlertTriangle className="h-5 w-5" />
                     Report an Issue
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm md:size-lg">
-                  <Link to="/issues">View All Issues</Link>
-                </Button>
               </div>
             </div>
           </div>
-          {/* Decorative elements */}
-          <div className="absolute top-2 right-2 md:top-4 md:right-4 w-16 h-16 md:w-32 md:h-32 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 w-12 h-12 md:w-24 md:h-24 bg-accent/20 rounded-full blur-lg"></div>
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-4 md:mb-8">
-          <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
-            <CardContent className="flex items-center p-3 md:p-6">
-              <div className="p-2 md:p-3 bg-blue-500 rounded-lg md:rounded-xl mr-2 md:mr-4">
-                <AlertTriangle className="h-4 w-4 md:h-6 md:w-6 text-white" />
-              </div>
-              <div>
-                <p className="text-xl md:text-3xl font-bold text-blue-700 dark:text-blue-300">{stats.total}</p>
-                <p className="text-xs md:text-sm text-blue-600 dark:text-blue-400 font-medium">Total</p>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20">
-            <CardContent className="flex items-center p-3 md:p-6">
-              <div className="p-2 md:p-3 bg-red-500 rounded-lg md:rounded-xl mr-2 md:mr-4">
-                <Clock className="h-4 w-4 md:h-6 md:w-6 text-white" />
-              </div>
-              <div>
-                <p className="text-xl md:text-3xl font-bold text-red-700 dark:text-red-300">{stats.urgent}</p>
-                <p className="text-xs md:text-sm text-red-600 dark:text-red-400 font-medium">Urgent</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <Card className="bg-white border border-border shadow-md">
+            <CardContent className="p-4">
+              <div className="flex items-center">
+                <div className="p-2 bg-gray-100 rounded-md mr-3">
+                  <AlertTriangle className="h-5 w-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-foreground">{stats.total}</p>
+                  <p className="text-sm text-gray-500">Total Issues</p>
+                </div>
               </div>
             </CardContent>
           </Card>
           
-          <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20">
-            <CardContent className="flex items-center p-3 md:p-6">
-              <div className="p-2 md:p-3 bg-yellow-500 rounded-lg md:rounded-xl mr-2 md:mr-4">
-                <TrendingUp className="h-4 w-4 md:h-6 md:w-6 text-white" />
-              </div>
-              <div>
-                <p className="text-xl md:text-3xl font-bold text-yellow-700 dark:text-yellow-300">{stats.inProgress}</p>
-                <p className="text-xs md:text-sm text-yellow-600 dark:text-yellow-400 font-medium">Progress</p>
+          <Card className="bg-white border border-border shadow-md">
+            <CardContent className="p-4">
+              <div className="flex items-center">
+                <div className="p-2 bg-red-100 rounded-md mr-3">
+                  <Clock className="h-5 w-5 text-red-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-red-600">{stats.urgent}</p>
+                  <p className="text-sm text-gray-500">Urgent</p>
+                </div>
               </div>
             </CardContent>
           </Card>
           
-          <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
-            <CardContent className="flex items-center p-3 md:p-6">
-              <div className="p-2 md:p-3 bg-green-500 rounded-lg md:rounded-xl mr-2 md:mr-4">
-                <CheckCircle className="h-4 w-4 md:h-6 md:w-6 text-white" />
+          <Card className="bg-white border border-border shadow-md">
+            <CardContent className="p-4">
+              <div className="flex items-center">
+                <div className="p-2 bg-yellow-100 rounded-md mr-3">
+                  <TrendingUp className="h-5 w-5 text-yellow-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-yellow-600">{stats.inProgress}</p>
+                  <p className="text-sm text-gray-500">In Progress</p>
+                </div>
               </div>
-              <div>
-                <p className="text-xl md:text-3xl font-bold text-green-700 dark:text-green-300">{stats.resolved}</p>
-                <p className="text-xs md:text-sm text-green-600 dark:text-green-400 font-medium">Resolved</p>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-white border border-border shadow-md">
+            <CardContent className="p-4">
+              <div className="flex items-center">
+                <div className="p-2 bg-green-100 rounded-md mr-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-green-600">{stats.resolved}</p>
+                  <p className="text-sm text-gray-500">Resolved</p>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -106,22 +107,22 @@ export const Home: React.FC = () => {
 
         {/* Urgent Issues Alert */}
         {urgentIssues.length > 0 && (
-          <div className="space-y-3 md:space-y-4 mb-4 md:mb-8">
+          <div className="mb-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg md:text-xl font-semibold text-urgent flex items-center gap-2">
+              <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5" />
                 Urgent Issues
               </h2>
-              <Badge variant="destructive" className="bg-urgent">
+              <Badge className="status-badge-pending">
                 {urgentIssues.length} Active
               </Badge>
             </div>
-            <div className="space-y-3">
+            <div className="mt-4 space-y-3">
               {urgentIssues.slice(0, 1).map(issue => (
                 <IssueCard key={issue.id} issue={issue} />
               ))}
               {urgentIssues.length > 1 && (
-                <Button asChild variant="outline" size="sm" className="w-full">
+                <Button asChild variant="outline" className="w-full mt-3">
                   <Link to="/issues">View All {urgentIssues.length} Urgent Issues</Link>
                 </Button>
               )}
@@ -131,29 +132,29 @@ export const Home: React.FC = () => {
 
         {/* Recent Announcements */}
         {recentAnnouncements.length > 0 && (
-          <div className="space-y-3 md:space-y-4 mb-4 md:mb-8">
+          <div className="mb-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg md:text-xl font-semibold">Latest Updates</h2>
-              <Button asChild variant="outline" size="sm">
+              <h2 className="text-xl font-bold text-foreground">Latest Updates</h2>
+              <Button asChild variant="outline">
                 <Link to="/announcements">View All</Link>
               </Button>
             </div>
-            <div className="space-y-3">
+            <div className="mt-4 space-y-3">
               {recentAnnouncements.map(announcement => (
-                <Card key={announcement.id} className="shadow-card">
-                  <CardHeader className="pb-2 md:pb-6">
+                <Card key={announcement.id} className="bg-white border border-border shadow-md">
+                  <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
-                      <CardTitle className="text-base md:text-lg">{announcement.title}</CardTitle>
+                      <CardTitle className="text-lg font-bold">{announcement.title}</CardTitle>
                       {announcement.isUrgent && (
-                        <Badge variant="destructive" className="bg-urgent">
+                        <Badge className="status-badge-pending">
                           Urgent
                         </Badge>
                       )}
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-sm md:text-base text-muted-foreground line-clamp-2">{announcement.description}</p>
-                    <div className="mt-2 text-xs text-muted-foreground">
+                    <p className="text-gray-700 line-clamp-2">{announcement.description}</p>
+                    <div className="mt-2 text-sm text-gray-500">
                       {new Date(announcement.publishedAt).toLocaleDateString()}
                     </div>
                   </CardContent>
@@ -164,14 +165,14 @@ export const Home: React.FC = () => {
         )}
 
         {/* Recent Issues */}
-        <div className="space-y-3 md:space-y-4 mb-4 md:mb-8">
+        <div className="mb-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg md:text-xl font-semibold">Recent Issues</h2>
-            <Button asChild variant="civic" size="sm">
+            <h2 className="text-xl font-bold text-foreground">Recent Issues</h2>
+            <Button asChild className="bg-primary hover:bg-primary-hover text-white">
               <Link to="/issues">View All Issues</Link>
             </Button>
           </div>
-          <div className="space-y-3">
+          <div className="mt-4 space-y-3">
             {recentIssues.map(issue => (
               <IssueCard key={issue.id} issue={issue} />
             ))}
@@ -179,29 +180,29 @@ export const Home: React.FC = () => {
         </div>
 
         {/* Quick Actions */}
-        <Card className="shadow-civic">
+        <Card className="bg-white border border-border shadow-md">
           <CardHeader>
-            <CardTitle className="text-lg md:text-xl">Quick Actions</CardTitle>
+            <CardTitle className="text-xl font-bold">Quick Actions</CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-            <Button asChild variant="civic" className="h-auto p-3 md:p-4">
+          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Button asChild className="h-auto p-4 bg-primary hover:bg-primary-hover text-white">
               <Link to="/report" className="flex flex-col items-center gap-2">
-                <AlertTriangle className="h-6 w-6 md:h-8 md:w-8" />
-                <span className="text-sm md:text-base">Report an Issue</span>
+                <AlertTriangle className="h-6 w-6" />
+                <span>Report an Issue</span>
               </Link>
             </Button>
             
-            <Button asChild variant="outline" className="h-auto p-3 md:p-4">
+            <Button asChild variant="outline" className="h-auto p-4">
               <Link to="/events" className="flex flex-col items-center gap-2">
-                <Clock className="h-6 w-6 md:h-8 md:w-8" />
-                <span className="text-sm md:text-base">View Events</span>
+                <Clock className="h-6 w-6" />
+                <span>View Events</span>
               </Link>
             </Button>
             
-            <Button asChild variant="outline" className="h-auto p-3 md:p-4">
+            <Button asChild variant="outline" className="h-auto p-4">
               <Link to="/feedback" className="flex flex-col items-center gap-2">
-                <CheckCircle className="h-6 w-6 md:h-8 md:w-8" />
-                <span className="text-sm md:text-base">Give Feedback</span>
+                <CheckCircle className="h-6 w-6" />
+                <span>Give Feedback</span>
               </Link>
             </Button>
           </CardContent>

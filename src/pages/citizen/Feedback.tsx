@@ -52,20 +52,20 @@ export const Feedback: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20 md:pb-8">
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-8">
       <main className="max-w-content mx-auto px-4 py-6">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-foreground mb-2">Share Your Feedback</h1>
-          <p className="text-muted-foreground">Help us improve our services with your valuable input</p>
+          <p className="text-gray-700">Help us improve our services with your valuable input</p>
         </div>
 
-        <Card>
+        <Card className="bg-white border border-border shadow-md">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <MessageSquare className="h-5 w-5 text-primary" />
               Submit Feedback
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-gray-700">
               Your feedback helps us serve the community better
             </CardDescription>
           </CardHeader>
@@ -79,6 +79,7 @@ export const Feedback: React.FC = () => {
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="Your full name"
                   required
+                  className="border-border"
                 />
               </div>
 
@@ -91,6 +92,7 @@ export const Feedback: React.FC = () => {
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   placeholder="your.email@example.com"
                   required
+                  className="border-border"
                 />
               </div>
 
@@ -103,10 +105,11 @@ export const Feedback: React.FC = () => {
                   placeholder="Share your thoughts, suggestions, or concerns..."
                   rows={6}
                   required
+                  className="border-border"
                 />
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
+              <Button type="submit" className="w-full bg-primary hover:bg-primary-hover text-white" size="lg">
                 <Send className="h-4 w-4 mr-2" />
                 Submit Feedback
               </Button>
@@ -114,22 +117,22 @@ export const Feedback: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card className="mt-6">
+        <Card className="mt-6 bg-white border border-border shadow-md">
           <CardHeader>
-            <CardTitle className="text-lg">Other Ways to Reach Us</CardTitle>
+            <CardTitle className="text-lg font-bold">Other Ways to Reach Us</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <div className="flex items-center justify-between py-2 border-b border-border">
+            <div className="flex items-center justify-between py-2 border-b border-gray-200">
               <span className="text-sm font-medium">Phone</span>
-              <span className="text-sm text-muted-foreground">011 123 4567</span>
+              <span className="text-sm text-gray-500">011 123 4567</span>
             </div>
-            <div className="flex items-center justify-between py-2 border-b border-border">
+            <div className="flex items-center justify-between py-2 border-b border-gray-200">
               <span className="text-sm font-medium">Email</span>
-              <span className="text-sm text-muted-foreground">info@setshaba.gov.za</span>
+              <span className="text-sm text-gray-500">info@setshaba.gov.za</span>
             </div>
             <div className="flex items-center justify-between py-2">
               <span className="text-sm font-medium">Office Hours</span>
-              <span className="text-sm text-muted-foreground">Mon-Fri 8AM-5PM</span>
+              <span className="text-sm text-gray-500">Mon-Fri 8AM-5PM</span>
             </div>
           </CardContent>
         </Card>

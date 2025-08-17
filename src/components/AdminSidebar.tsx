@@ -32,15 +32,15 @@ export const AdminSidebar: React.FC = () => {
   };
 
   return (
-    <div className="w-64 bg-sidebar border-r border-sidebar-border h-screen flex flex-col">
+    <div className="w-64 bg-gray-900 border-r border-gray-800 h-screen flex flex-col">
       <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-            <Shield className="h-5 w-5 text-primary-foreground" />
+          <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+            <Shield className="h-5 w-5 text-white" />
           </div>
           <div>
-            <h2 className="font-bold text-sidebar-foreground">Admin Panel</h2>
-            <p className="text-xs text-sidebar-foreground/70">Setshaba Connect</p>
+            <h2 className="font-bold text-white">Admin Panel</h2>
+            <p className="text-xs text-gray-400">Setshaba Connect</p>
           </div>
         </div>
       </div>
@@ -51,8 +51,13 @@ export const AdminSidebar: React.FC = () => {
             <Button
               key={path}
               asChild
-              variant={isActive(path) ? "default" : "ghost"}
+              variant="ghost"
               className="w-full justify-start"
+              className={`w-full justify-start ${
+                isActive(path) 
+                  ? "bg-primary text-white hover:bg-primary-hover" 
+                  : "text-gray-300 hover:text-white hover:bg-gray-800"
+              }`}
             >
               <Link to={path} className="flex items-center gap-3">
                 <Icon className="h-4 w-4" />
@@ -63,8 +68,8 @@ export const AdminSidebar: React.FC = () => {
         </div>
       </nav>
       
-      <div className="p-4 border-t border-sidebar-border space-y-2">
-        <Button asChild variant="outline" className="w-full justify-start">
+      <div className="p-4 border-t border-gray-800 space-y-2">
+        <Button asChild variant="outline" className="w-full justify-start border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800">
           <Link to="/" className="flex items-center gap-3">
             <Eye className="h-4 w-4" />
             View Citizen Portal
@@ -72,8 +77,8 @@ export const AdminSidebar: React.FC = () => {
         </Button>
         
         <Button 
-          variant="ghost" 
-          className="w-full justify-start text-destructive hover:text-destructive"
+          variant="ghost"
+          className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-gray-800"
           onClick={handleLogout}
         >
           <LogOut className="h-4 w-4 mr-3" />

@@ -27,45 +27,44 @@ export const IssueCard: React.FC<IssueCardProps> = ({
     return date.toLocaleDateString();
   };
 
+  const getStatusBadgeClass = (status: string) => {
+    switch (status) {
+      case "Reported": return "status-badge-pending";
+      case "In Progress": return "status-badge-progress";
+      case "Resolved": return "status-badge-resolved";
+      default: return "bg-gray-100 text-gray-800 border-gray-200";
+    }
+  };
+
   return (
     <Card 
-      className={`cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-0 ${
-        issue.isUrgent 
-          ? 'bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 shadow-lg shadow-red-200 dark:shadow-red-900/20' 
-          : 'bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg hover:shadow-xl'
-      }`}
+      className="bg-white border border-border shadow-md hover:shadow-lg transition-shadow cursor-pointer"
       onClick={onClick}
     >
-      <CardHeader className="pb-4">
+      <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <span className="text-2xl">{categoryIcons[issue.category]}</span>
+            <div className="p-2 bg-gray-100 rounded-md">
+              <span className="text-xl">{categoryIcons[issue.category]}</span>
             </div>
             <div>
-              <CardTitle className={`text-xl font-bold ${issue.isUrgent ? 'text-red-700 dark:text-red-300' : 'text-gray-900 dark:text-white'}`}>
+              <CardTitle className="text-lg font-bold text-foreground">
                 {issue.title}
               </CardTitle>
               <div className="flex items-center gap-2 mt-1">
-                <MapPin className="h-4 w-4 text-gray-500" />
-                <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">{issue.location}</span>
+                <MapPin className="h-4 w-4 text-gray-400" />
+                <span className="text-sm text-gray-500">{issue.location}</span>
               </div>
             </div>
           </div>
           <div className="flex flex-col items-end gap-2">
             <Badge 
-              className={`px-3 py-1 text-xs font-semibold ${
-                issue.status === 'Resolved' 
-                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' 
-                  : issue.status === 'In Progress'
-                  ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'
-                  : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
-              }`}
+              className={`px-2 py-1 text-xs font-medium border ${getStatusBadgeClass(issue.status)}`}
             >
               {issue.status}
             </Badge>
             {issue.isUrgent && (
-              <Badge className="bg-red-500 text-white animate-pulse">
+              <Badge className="status-badge-pending">
                 Urgent
               </Badge>
             )}
@@ -74,25 +73,22 @@ export const IssueCard: React.FC<IssueCardProps> = ({
       </CardHeader>
       
       <CardContent>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{issue.description}</p>
+        <p className="text-gray-700 mb-4 leading-relaxed">{issue.description}</p>
         
         {showProgress && (
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium">Progress</span>
-              <span className="text-sm text-muted-foreground">{issue.progress}%</span>
+              <span className="text-sm font-medium text-foreground">Progress</span>
+              <span className="text-sm text-gray-500">{issue.progress}%</span>
             </div>
             <Progress 
               value={issue.progress}
-              className={`h-3 ${
-                issue.progress === 100 ? 'bg-green-100' : 
-                issue.progress > 50 ? 'bg-yellow-100' : 'bg-blue-100'
-              }`}
+              className="h-2"
             />
           </div>
         )}
         
-        <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
+        <div className="flex items-center gap-2 mt-4 text-xs text-gray-500">
           <Clock className="h-3 w-3" />
           <span>Reported {formatDate(issue.reportedAt)} at {formatTime(issue.reportedAt)}</span>
         </div>
